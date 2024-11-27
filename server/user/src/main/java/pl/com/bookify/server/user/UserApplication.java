@@ -1,11 +1,11 @@
-package pl.com.server.commons;
+package pl.com.bookify.server.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CommonsApplication {
+public class UserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CommonsApplication.class);
+        SpringApplication.run(UserApplication.class);
     }
 }
