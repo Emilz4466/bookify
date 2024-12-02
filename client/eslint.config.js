@@ -1,28 +1,51 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-
-export default tseslint.config(
-  { ignores: ['dist'] },
+export default [
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
+    ignores: ["node_modules/**"],
+  },
+  {
+    files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: "latest",
+      sourceType: "module",
+      ecmaFeatures: {
+        jsx: true,
+      },
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        project: ["./tsconfig.json", "./tsconfig.node.json"],
+        tsconfigRootDir: __dirname,
+      },
     },
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      react: require("eslint-plugin-react"),
+      "@typescript-eslint": require("@typescript-eslint/eslint-plugin"),
+      "unused-imports": require("eslint-plugin-unused-imports"),
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      "react/react-in-jsx-scope": "off",
+      camelcase: "error",
+      "spaced-comment": "error",
+      quotes: ["error", "single"],
+      "no-duplicate-imports": "error",
+      endOfLine: "off",
+      "unused-imports/no-unused-imports": "error",
+      "no-shadow": "error",
+      "prefer-const": "warn",
+      "no-console": "warn",
+      "@typescript-eslint/prefer-readonly": "off",
+      "@typescript-eslint/no-implicit-any-catch": "warn",
+      "@typescript-eslint/no-unsafe-call": "warn",
+      "@typescript-eslint/no-unsafe-return": "warn",
+      "@typescript-eslint/no-unnecessary-type-assertion": "warn",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
     },
   },
-)
+  {
+    files: [".eslintrc.{js,cjs}"],
+    languageOptions: {
+      sourceType: "script",
+    },
+    rules: {},
+  },
+];
