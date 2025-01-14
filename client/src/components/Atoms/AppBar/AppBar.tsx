@@ -6,5 +6,5 @@ import {
 interface AppBarProps extends MuiAppBarProps {}
 
 export const AppBar = (props: AppBarProps) => {
-  return <MuiAppBar {...props} />;
+  return <MuiAppBar sx={{ color: "red" }} {...props} />;
 };

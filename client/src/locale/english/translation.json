@@ -1,5 +1,7 @@
 {
   "topbar": {
-    "searchFieldPlaceholder": "Search..."
+    "searchFieldPlaceholder": "Search...",
+    "settingsBtnTitle": "Settings",
+    "profileBtnTitle": "Profile"
   }
 }

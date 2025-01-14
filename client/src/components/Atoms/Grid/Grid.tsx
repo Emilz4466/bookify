@@ -14,6 +14,7 @@ interface GridProps
     | "onSubmit"
     | "onReset"
     | "sx"
+    | "flexWrap"
   > {}
 
 export const Grid = (props: GridProps) => <MuiGrid p={1} {...props} />;

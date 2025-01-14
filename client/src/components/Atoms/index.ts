@@ -15,3 +15,4 @@ export * from "./IconButton";
 export { styled } from "@mui/material";
 export * from "./Avatar";
 export * from "./AppBar";
+export * from "./Paper";

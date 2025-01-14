@@ -4,7 +4,6 @@ import {
   TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
 } from "@mui/material";
-import { brown } from "@mui/material/colors";
 import { forwardRef } from "react";
 import {
   RegisterOptions,
@@ -55,36 +54,38 @@ export const TextField = forwardRef((props: TextFieldProps, ref) => {
 });
 
 // eslint-disable-next-line no-empty-pattern
-const TextFieldStyled = styled(MuiTextField)<MuiTextFieldProps>(({}) => ({
-  "& .MuiInputBase-root": {
-    borderRadius: "0px",
-    height: "50px",
-    "&.Mui-focused": {
-      "& fieldset": {
-        borderColor: brown[600],
+const TextFieldStyled = styled(MuiTextField)<MuiTextFieldProps>(
+  ({ theme }) => ({
+    "& .MuiInputBase-root": {
+      borderRadius: "0px",
+      height: "50px",
+      "&.Mui-focused": {
+        "& fieldset": {
+          borderColor: theme.palette.primary.main,
+        },
+      },
+      "&:hover fieldset": {
+        borderColor: theme.palette.primary.main,
       },
     },
-    "&:hover fieldset": {
-      borderColor: brown[500],
+    "& .MuiFormHelperText-root ": {
+      fontWeight: "bolder",
     },
-  },
-  "& .MuiFormHelperText-root ": {
-    fontWeight: "bolder",
-  },
-  "& .MuiInputLabel-root": {
-    marginTop: "5px",
-    "&.Mui-focused": {
-      fontWeight: "bold",
-      color: brown[600],
+    "& .MuiInputLabel-root": {
+      marginTop: "5px",
+      "&.Mui-focused": {
+        fontWeight: "bold",
+        color: theme.palette.primary.dark,
+      },
     },
-  },
-  "& input:-webkit-autofill": {
-    transition: "background-color 0s 600000s, color 0s 600000s",
-  },
-  "input:-webkit-autofill:focus": {
-    transition: "background-color 0s 600000s, color 0s 600000s",
-  },
-  "& .MuiFormHelperText-root.Mui-error": {
-    backgroundColor: "transparent",
-  },
-}));
+    "& input:-webkit-autofill": {
+      transition: "background-color 0s 600000s, color 0s 600000s",
+    },
+    "input:-webkit-autofill:focus": {
+      transition: "background-color 0s 600000s, color 0s 600000s",
+    },
+    "& .MuiFormHelperText-root.Mui-error": {
+      backgroundColor: "transparent",
+    },
+  }),
+);

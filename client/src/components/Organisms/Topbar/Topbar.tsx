@@ -1,5 +1,6 @@
-import { AppBar, Box, Grid, Typography } from "@/components/Atoms";
+import { AppBar, Box, Grid } from "@/components/Atoms";
 import {
+  Logo,
   ProfileLogin,
   Settings,
   TopbarSearchField,
@@ -7,7 +8,12 @@ import {
 
 export const Topbar = () => {
   return (
-    <AppBar position={"sticky"} color="default" elevation={4}>
+    <AppBar
+      position={"sticky"}
+      color="default"
+      elevation={2}
+      sx={{ mt: 2, mb: 0, top: "16px" }}
+    >
       <Grid size={12} container>
         <Grid
           size={3}
@@ -15,18 +21,21 @@ export const Topbar = () => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          {/*logo*/}
-          <Typography variant={"h3"}>bookify</Typography>
+          <Logo type={"titleLogo"} width={190} />
         </Grid>
         <Grid size={7} container>
           <Box sx={{ width: "100%" }}>
             <TopbarSearchField />
           </Box>
         </Grid>
-        <Grid size={1} container>
+        <Grid
+          size={2}
+          container
+          alignItems={"center"}
+          flexWrap={"nowrap"}
+          justifyContent={"center"}
+        >
           <Settings />
-        </Grid>
-        <Grid size={1} container>
           <ProfileLogin />
         </Grid>
       </Grid>

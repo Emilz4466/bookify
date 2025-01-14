@@ -7,5 +7,10 @@ interface TooltipProps
   extends Pick<MuiTooltipProps, "placement" | "title" | "children"> {}
 
 export const Tooltip = (props: TooltipProps) => {
-  return <MuiTooltip aria-haspopup={true} {...props} />;
+  const { children, ...rest } = props;
+  return (
+    <MuiTooltip arrow aria-haspopup={true} {...rest}>
+      <span>{children}</span>
+    </MuiTooltip>
+  );
 };
