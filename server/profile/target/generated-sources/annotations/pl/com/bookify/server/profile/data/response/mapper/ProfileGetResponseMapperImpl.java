@@ -6,7 +6,7 @@ import pl.com.bookify.server.profile.data.response.ProfileGetResponse;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-29T13:39:37+0100",
+    date = "2025-01-14T11:14:42+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 public class ProfileGetResponseMapperImpl implements ProfileGetResponseMapper {
