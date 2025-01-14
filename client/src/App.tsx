@@ -5,7 +5,8 @@ import { AppRoutes } from "@/pages";
 import { ReactNode, Suspense } from "react";
 import { CircularProgress, CssBaseline } from "@/components/Atoms";
 import { ThemeContextProvider } from "@/theme/ThemeProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/queryClient";
 
 const App: React.FC = () => {
   return (
@@ -20,8 +21,6 @@ const App: React.FC = () => {
 };
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
-  const queryClient = new QueryClient();
-
   return (
     <Suspense fallback={<CircularProgress />}>
       <QueryClientProvider client={queryClient}>
