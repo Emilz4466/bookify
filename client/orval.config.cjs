@@ -3,17 +3,39 @@
 module.exports = {
   profile: {
     output: {
-      mode: "tags", // Generowanie plików dla każdego tagu w OpenAPI
-      target: "./src/model/endpoint", // Folder, do którego będą generowane pliki
-      client: "react-query", // Generowanie hooków dla React Query
-      mock: false, // Wyłączenie generowania mocków
+      mode: "tags-split",
+      target: "./src/model/endpoint",
+      schemas: "./src/model/schema",
+      client: "react-query",
+      mock: false,
+      clean: true,
+      override: {
+        useDates: true,
+        mutator: {
+          path: "./src/lib/axios.ts",
+          name: "customInstance",
+        },
+        query: {
+          useQuery: true,
+          useInfinite: true,
+          //useInfiniteQueryParam: "pageNo",
+        },
+      },
     },
     input: {
-      target: "http://localhost:8082/v3/api-docs", // URL do API Swagger
+      target: "http://localhost:8082/v3/api-docs",
     },
-    zod: {
-      target: "./src/model/validation", // Folder na generowane pliki walidacyjne Zod
-      enabled: true, // Włącz generowanie plików walidacyjnych dla Zod
+  },
+  zod: {
+    input: {
+      target: "http://localhost:8082/v3/api-docs",
+    },
+    output: {
+      coerceTypes: false,
+      mode: "tags-split",
+      target: "./src/model/validation",
+      client: "zod",
+      clean: true,
     },
   },
 };
