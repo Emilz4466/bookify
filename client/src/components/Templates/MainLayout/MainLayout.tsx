@@ -24,7 +24,9 @@ export const MainLayout = (props: MainLayoutProps) => {
       ></Box>
       <Topbar />
       <Grid size={12} sx={{ pl: 0, pr: 0, pt: 2, pb: 2 }}>
-        {children}
+        <Grid container size={12} sx={{ p: 0 }}>
+          {children}
+        </Grid>
       </Grid>
     </Grid>
   );
