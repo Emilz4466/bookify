@@ -40,4 +40,9 @@ public record ProfileController(ProfileService profileService) {
         return profileService.findAll(new ProfileFindAllRequest(firstName));
     }
 
+    @GetMapping("getProfileByEmail/{email}")
+    public ResponseEntity<ProfileGetResponse> getProfileByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(profileService.getProfileByEmail(email));
+    }
+
 }

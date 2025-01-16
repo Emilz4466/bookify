@@ -11,8 +11,10 @@ import pl.com.bookify.server.profile.data.response.ProfileGetResponse;
 import pl.com.bookify.server.profile.data.response.ProfilePostResponse;
 import pl.com.bookify.server.profile.data.response.mapper.ProfileGetResponseMapper;
 import pl.com.bookify.server.profile.data.response.mapper.ProfilePostResponseMapper;
+import pl.com.bookify.server.profile.exception.ProfileNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static pl.com.bookify.server.profile.ProfileSpecifications.firstNameFilter;
 
@@ -44,6 +46,14 @@ public class ProfileService {
     public List<ProfileGetResponse> findAll(ProfileFindAllRequest request) {
         Specification<Profile> filters = Specification.where(StringUtils.isBlank(request.firstName()) ? null : firstNameFilter(request.firstName()));
         return profileRepo.findAll(filters).stream().map(ProfileGetResponseMapper.INSTANCE::entityToResponse).toList();
+    }
+
+    public ProfileGetResponse getProfileByEmail(String email) {
+        Optional<Profile> profile = profileRepo.findProfileByEmail(email);
+        if(profile.isEmpty()) {
+            throw new ProfileNotFoundException("email " + email);
+        }
+        return ProfileGetResponseMapper.INSTANCE.entityToResponse(profile.get());
     }
 
     /*TODO

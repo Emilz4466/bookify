@@ -15,6 +15,7 @@
     <module>commons</module>
     <module>profile</module>
     <module>book</module>
+    <module>auth</module>
   </modules>
 
   <properties>
