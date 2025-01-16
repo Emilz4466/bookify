@@ -1,29 +1,46 @@
-import { Box, Grid, Paper, Typography } from "@/components/Atoms";
+import { Box, CircularProgress, Typography } from "@/components/Atoms";
+import { useFindAllProfiles } from "@/model/endpoint/profile-controller/profile-controller";
+import { ElementContainer } from "@/components/Molecules/ElementContainer/ElementContainer";
+import { Fragment } from "react";
 
 export const HomePage = () => {
   return (
-    <Grid container size={12} sx={{ p: 0 }}>
-      <Grid size={{ xs: 12, md: 4 }} sx={{ p: 0, pr: 2 }}>
-        <Paper>
-          <Box sx={{ height: "780px" }}>
-            <Typography>test bar 1</Typography>
-          </Box>
-        </Paper>
-      </Grid>
-      <Grid size={{ xs: 12, md: 8 }} sx={{ p: 0 }}>
-        <Paper>
-          <Box sx={{ height: "780px" }}>
-            <Typography>test bar 2</Typography>
-          </Box>
-        </Paper>
-      </Grid>
-      <Grid size={{ xs: 12, md: 6 }} sx={{ p: 0, pt: 2 }}>
-        <Paper>
-          <Box sx={{ height: "780px" }}>
-            <Typography>test bar 3</Typography>
-          </Box>
-        </Paper>
-      </Grid>
-    </Grid>
+    <Fragment>
+      <ElementContainer size={{ xs: 12, md: 4 }} pr>
+        <TestFindAll />
+      </ElementContainer>
+      <ElementContainer size={{ xs: 12, md: 8 }}>
+        <Typography>test bar 2</Typography>
+      </ElementContainer>
+      <ElementContainer size={{ xs: 12, md: 4 }} pt pr>
+        <Box sx={{ height: "750px" }}>
+          <Typography>test bar 3</Typography>
+        </Box>
+      </ElementContainer>
+    </Fragment>
+  );
+};
+
+const TestFindAll = () => {
+  const { data, isLoading, isFetching } = useFindAllProfiles();
+  return (
+    <>
+      {isLoading || isFetching ? (
+        <CircularProgress />
+      ) : (
+        <>
+          {data?.map((profile) => (
+            <>
+              <Typography>{`id: ${profile.id}`}</Typography>
+              <Typography>{`firstName: ${profile.firstName}`}</Typography>
+              <Typography>{`email: ${profile.email}`}</Typography>
+              <Typography>{`password: ${profile.password}`}</Typography>
+              <Typography>{`role: ${profile.role}`}</Typography>
+              <Typography>{`isAuthor: ${profile.isAuthor}`}</Typography>
+            </>
+          ))}
+        </>
+      )}
+    </>
   );
 };

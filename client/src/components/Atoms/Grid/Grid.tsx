@@ -18,3 +18,5 @@ interface GridProps
   > {}
 
 export const Grid = (props: GridProps) => <MuiGrid p={1} {...props} />;
+
+export type GridSize = MuiGridProps["size"];
